@@ -1389,9 +1389,8 @@ function setAptStatus(id, st){
   }
   closeModal();
   toast(st === 'atendida' ? 'Cita marcada como atendida y pago registrado.' : 'Cita marcada como ' + STATUS_LABEL[st].toLowerCase() + '.');
+  renderNav();
   go(state.section === 'ficha' ? 'ficha' : state.section);
-  if(state.section === 'agenda') viewAgenda(document.getElementById('view'));
-  if(state.section === 'escritorio') viewEscritorio(document.getElementById('view'));
 }
 
 /* --- nueva cita --- */
@@ -1494,6 +1493,7 @@ function saveAppointment(){
   APPOINTMENTS.sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
   closeModal();
   toast(clash ? 'Cita agendada. Ojo: se cruza con otra cita de ' + proName(pro) + '.' : 'Cita agendada para ' + fmtLong(parseISO(date)) + ' a las ' + to12(time) + '.');
+  renderNav();
   if(state.section === 'agenda'){
     if(state.agendaMode === 'dia' && iso(state.agendaDate) !== date){ state.agendaDate = parseISO(date); }
     viewAgenda(document.getElementById('view'));
