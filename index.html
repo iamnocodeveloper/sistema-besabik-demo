@@ -327,15 +327,15 @@ table.t .num{text-align:right; font-variant-numeric:tabular-nums; font-weight:60
 .msg-list-h{padding:14px 16px; border-bottom:1px solid var(--line); background:#fff}
 .msg-list-h h3{font-size:14px; margin-bottom:2px}
 .msg-list-h p{font-size:11.5px; color:var(--muted)}
-.msg-items{overflow-y:auto; flex:1}
-.msg-item{display:flex; gap:11px; padding:12px 14px; border-bottom:1px solid var(--line-2); width:100%; text-align:left; align-items:flex-start}
+.msg-items{overflow-y:auto; flex:1; min-width:0}
+.msg-item{display:flex; gap:11px; padding:12px 14px; border-bottom:1px solid var(--line-2); width:100%; text-align:left; align-items:flex-start; min-width:0}
 .msg-item:hover{background:#FBF5F7}
 .msg-item.on{background:var(--accent-softer); box-shadow:inset 3px 0 0 var(--accent)}
 .msg-item .m-main{flex:1; min-width:0}
 .msg-item .m-top{display:flex; gap:8px; align-items:baseline}
-.msg-item .m-n{font-size:12.5px; font-weight:700; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.msg-item .m-n{font-size:12.5px; font-weight:700; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .msg-item .m-t{font-size:10px; color:var(--muted-2); flex:0 0 auto}
-.msg-item .m-p{font-size:11.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px}
+.msg-item .m-p{font-size:11.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px; display:block}
 .msg-item .m-badge{width:17px;height:17px;border-radius:50%;background:var(--accent-2);color:#fff;font-size:9.5px;font-weight:800;display:grid;place-items:center}
 .msg-pane{display:flex; flex-direction:column; min-width:0; background:#F8F5F6}
 .msg-pane-h{display:flex; align-items:center; gap:11px; padding:12px 16px; border-bottom:1px solid var(--line); background:#fff}
