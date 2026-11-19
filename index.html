@@ -977,7 +977,6 @@ function enterApp(){
   document.getElementById('tbDate').textContent = fmtLong(TODAY) + ' · ' + TODAY.getFullYear();
   document.getElementById('chipToday').textContent = fmtLong(TODAY);
   const todayCount = aptsOn(iso(TODAY)).filter(a => a.status !== 'cancelada').length;
-  document.getElementById('sideFootMeta').textContent = todayCount + ' citas hoy · 3 profesionales';
   renderNav();
   go('escritorio');
   toast('Modo demostración activo: los datos son de ejemplo.');
@@ -986,6 +985,12 @@ function enterApp(){
 
 function renderNav(){
   const nav = document.getElementById('nav');
+  const meta = document.getElementById('sideFootMeta');
+  if(meta){
+    const hoy = aptsOn(iso(TODAY)).filter(a => a.status !== 'cancelada').length;
+    const pend = APPOINTMENTS.filter(a => a.status === 'pendiente' && a.date >= iso(TODAY)).length;
+    meta.textContent = hoy + ' citas hoy · ' + pend + ' por confirmar';
+  }
   nav.innerHTML = '<div class="side-label">Operación diaria</div>' + SECTIONS.map(s => {
     const act = (state.section === s.id || (s.id === 'clientas' && state.section === 'ficha')) ? 'active' : '';
     const badge = s.id === 'mensajes' && unreadTotal() ? `<span class="nav-badge">${unreadTotal()}</span>` : '';
@@ -1104,7 +1109,7 @@ function viewEscritorio(root){
   root.innerHTML = `
   <div class="page-head">
     <div>
-      <h1>Buenos días, Carla</h1>
+      <h1>${new Date().getHours() < 12 ? 'Buenos días' : (new Date().getHours() < 19 ? 'Buenas tardes' : 'Buenas noches')}, Carla</h1>
       <div class="sub">${fmtLong(TODAY)} · ${todayApts.length} citas en agenda, ${upcoming.length} por atender.</div>
     </div>
     <div class="actions">
